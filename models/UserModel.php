@@ -12,6 +12,9 @@ class User {
         $this -> id = $datos['id'];
         $this -> name = $datos['user'];
         $this -> rol = $datos['rol'];
+        $this -> conectado = $datos['conectado'];
+        $this -> ultimaConexion = $datos['ultimaConexion'];
+        
     }
 
     public function getId() {
