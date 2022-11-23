@@ -71,11 +71,13 @@ class userRepository {
 
     public static function getUserOnline() {
         $online = [];
+        $tiempoDesconexion=60;//Se desconectara en 1 minuto
         $db = Conectar::conexion();
         $user = $_SESSION['user']->getId();
         $result = $db -> query("SELECT * FROM users WHERE conectado = 1");
         while ($datos = $result -> fetch_assoc()) {
-            $online[] = new User($datos);
+            $user=new User($datos);
+            if($user->getTime() < time()+$tiempoDesconexion) $online[] = new User($datos); //Si han pasado menos de 60 segundos se añade al array de usuarios
         }
         return $online;
     }
@@ -94,7 +96,7 @@ class userRepository {
 
     public static function ultimaConexion($id_user){
         $db=Conectar::conexion();
-        $result=$db -> query("UPDATE users set ultimaConexion = 0 where id='".$id_user."'");
+        $result=$db -> query("UPDATE users set ultimaConexion = UNIX_TIMESTAMP() where id='".$id_user."'");
         return $result;
     }
 

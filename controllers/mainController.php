@@ -25,7 +25,7 @@ $mensajes = MensajesRepository::getMensajes();
     // añadimos un nuevo mensaje en la base de datos
 if (isset($_POST['publicar'])) {
     MensajesRepository::addMensaje($_POST['mensaje']);
-    
+    userRepository::ultimaConexion($_SESSION['user']->getId());
     header("location:index.php");
 }
 

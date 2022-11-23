@@ -5,11 +5,11 @@ if (isset($_POST['logeo'])) {
         $error = "Error, Has dejado algun campo vacio";
     } else if ($user = UserRepository::login($_POST['user'], $password)) {
         $_SESSION['user'] = $user;
+        userRepository::ultimaConexion($_SESSION['user']->getId());
         header("location:index.php");
     } else {
         $error = "Usuario o contraseña incorrectos ";
     }
-    
 }
 
 if (isset($_POST['registro'])) {
