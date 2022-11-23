@@ -16,12 +16,12 @@ class tabla {
         return $this -> id;
     }
     
-    public function getName() {
-        return $this -> name;
+    public function getMensaje() {
+        return $this -> mensaje;
     }
 
-    public function getRol() {
-        return $this -> rol;
+    public function getName() {
+        return $this -> name;
     }
 
 } 
