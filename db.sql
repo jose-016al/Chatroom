@@ -24,6 +24,13 @@ CREATE TABLE mensajes (
     FOREIGN KEY (user) REFERENCES users(id)
 );
 
+CREATE TABLE sala (
+    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
+    mensaje INT NOT NULL,
+    name VARCHAR(50),
+    FOREIGN KEY (Mensaje) REFERENCES mensajes(id)
+);
+
     -- usuarios----------
 INSERT INTO users(user, password, rol, conectado) VALUES ("jose_016al", md5("211099"), 0, 0);
 INSERT INTO users(user, password, rol, conectado) VALUES ("inma", md5("1234"), 1, 0);
