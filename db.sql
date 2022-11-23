@@ -11,7 +11,8 @@ CREATE TABLE users (
     user VARCHAR(25) NOT NULL,
     password VARCHAR(255) NOT NULL,
     rol INT NOT NULL,
-    conectado INT NOT NULL
+    conectado INT NOT NULL,
+    ultimaConexion TIMESTAMP
 );
 
 CREATE TABLE mensajes (
