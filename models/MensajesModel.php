@@ -8,6 +8,7 @@ class Mensajes {
     private $imagen;
     private $fecha;
     private $mostrar;
+    private $sala;
 
     public function __construct ($datos){
         $this -> id = $datos['id'];
@@ -40,6 +41,10 @@ class Mensajes {
 
     public function getMostrar() {
         return $this -> mostrar;
+    }
+
+    public function getSala() {
+        return $this -> sala;
     }
 
 } 
