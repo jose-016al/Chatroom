@@ -4,6 +4,8 @@ CREATE DATABASE chatRoom COLLATE utf8mb4_spanish_ci;
 
 USE chatRoom;
 
+
+// hola
 CREATE TABLE users (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     user VARCHAR(25) NOT NULL,
