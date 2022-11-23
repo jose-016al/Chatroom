@@ -18,6 +18,7 @@ class MensajesRepository {
         $db=Conectar::conexion();
         $user = $_SESSION['user']->getId();
         $result = $db -> query("INSERT INTO mensajes(user, mensaje, fecha, mostrar) VALUES ($user, '$mensaje', NOW(), 1);");
+        userRepository::ultimaConexion($_SESSION['user']->getId());
         return $result; 
     }
 
