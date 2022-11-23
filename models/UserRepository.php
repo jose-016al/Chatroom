@@ -92,6 +92,12 @@ class userRepository {
         return $result;
     }
 
+    public static function ultimaConexion($id_user){
+        $db=Conectar::conexion();
+        $result=$db -> query("UPDATE users set ultimaConexion = 0 where id='".$id_user."'");
+        return $result;
+    }
+
 }
 
 ?>
