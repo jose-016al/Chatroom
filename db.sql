@@ -17,7 +17,7 @@ CREATE TABLE salas (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     user INT NOT NULL,
     name VARCHAR (50),
-    FOREIGN KEY (creador) REFERENCES users (id)
+    FOREIGN KEY (user) REFERENCES users (id)
 );
 
 CREATE TABLE mensajes (

@@ -14,8 +14,14 @@ if (!isset($_SESSION['user']))
     $datos['id'] = 0;
     $datos['user'] = "";
     $datos['rol'] = 1;
+    $datos['conectado']=1;
+    $datos['ultimaConexion']=0;
     $_SESSION['user'] = new User($datos);
+}else if (isset($_SESSION['user']))
+{
+    userRepository::cambiarConectado($_SESSION['user']->getId());
 }
+
 if (isset($_GET['login']))
 {
     require_once('controllers/loginController.php');
@@ -32,10 +38,6 @@ if (isset($_GET['interactuar']))
 }
 
 
-if (isset($_SESSION['user']))
-{
-    userRepository::cambiarConectado($_SESSION['user']->getId());
-}
 
 $online = userRepository::getUserOnline();
 

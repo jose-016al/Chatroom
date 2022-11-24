@@ -44,9 +44,9 @@ if (isset($_POST['registro']))
 
 if (isset($_GET['logout']))
 {
-    // unset($_SESSION['user']);
-    session_destroy();
     userRepository::quitarConectado($_SESSION['user']->getId());
+    unset($_SESSION['user']);
+    session_destroy();
     header("location:index.php");
 }
 
