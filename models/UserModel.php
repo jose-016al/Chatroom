@@ -27,9 +27,11 @@ class User {
     public function getRol() {
         return $this -> rol;
     }
+
     public function getConectado() {
         return $this -> conectado;
     }
+
     public function getTime() {
         return $this -> ultimaConexion;
     }

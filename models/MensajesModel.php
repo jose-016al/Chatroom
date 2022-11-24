@@ -17,6 +17,7 @@ class Mensajes {
         $this -> imagen = $datos['imagen'];
         $this -> fecha = $datos['fecha'];
         $this -> mostrar = $datos['mostrar'];
+        $this -> sala = $datos['sala'];
     }
 
     public function getId() {
