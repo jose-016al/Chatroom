@@ -69,6 +69,21 @@ class userRepository {
         return $result;
     }
 
+        // Le asigna un valor de conectado al usuario que ha hecho el login
+    public static function cambiarConectado($id_user) {
+        $db = Conectar::conexion();
+        $result = $db -> query("UPDATE users SET conectado = 1 WHERE id = '".$id_user."'");
+        return $result;
+    }
+    
+        // le quita el valor de conectado al usuario que hace el logout
+    public static function quitarConectado($id_user) {
+        $db = Conectar::conexion();
+        $result = $db -> query("UPDATE users SET conectado = 0 WHERE id = '".$id_user."'");
+        return $result;
+    }
+
+        // devuelve los usuarios conectados
     public static function getUserOnline() {
         $online = [];
         $tiempoDesconexion=5;//Se desconectara en 1 minuto
@@ -80,18 +95,6 @@ class userRepository {
             if(time()-$user->getTime() < $tiempoDesconexion) $online[] = new User($datos); //Si han pasado menos de 60 segundos se añade al array de usuarios
         }
         return $online;
-    }
-
-    public static function cambiarConectado($id_user) {
-        $db = Conectar::conexion();
-        $result = $db -> query("UPDATE users SET conectado = 1 WHERE id = '".$id_user."'");
-        return $result;
-    }
-
-    public static function quitarConectado($id_user) {
-        $db = Conectar::conexion();
-        $result = $db -> query("UPDATE users SET conectado = 0 WHERE id = '".$id_user."'");
-        return $result;
     }
 
     public static function ultimaConexion($id_user){
