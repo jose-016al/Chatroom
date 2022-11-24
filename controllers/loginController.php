@@ -1,33 +1,49 @@
 <?php
-if (isset($_POST['logeo'])) {
+if (isset($_POST['logeo']))
+{
     $password = md5($_POST['password']);
-    if (empty($_POST['user']) && empty($password)) {
+    if (empty($_POST['user']) && empty($password))
+    {
         $error = "Error, Has dejado algun campo vacio";
-    } else if ($user = UserRepository::login($_POST['user'], $password)) {
+    }
+    else if ($user = UserRepository::login($_POST['user'], $password))
+    {
         $_SESSION['user'] = $user;
         userRepository::ultimaConexion($_SESSION['user']->getId());
         header("location:index.php");
-    } else {
+    }
+    else
+    {
         $error = "Usuario o contraseña incorrectos ";
     }
 }
 
-if (isset($_POST['registro'])) {
-    if (empty($_POST['user']) || empty($_POST['password']) || empty($_POST['password2'])) {
+if (isset($_POST['registro']))
+{
+    if (empty($_POST['user']) || empty($_POST['password']) || empty($_POST['password2']))
+    {
         $error = "Error, Has dejado algun campo vacio";
-    } else if (userRepository::comprobarUsuarioDuplicado($_POST['user']) == 0) {
-        if ($_POST['password'] == $_POST['password2']) {
+    }
+    else if (userRepository::comprobarUsuarioDuplicado($_POST['user']) == 0)
+    {
+        if ($_POST['password'] == $_POST['password2'])
+        {
             UserRepository::registro($_POST['user'], $_POST['password']);
             header("location:index.php?login=registro");
-        } else {
+        }
+        else
+        {
             $error = "Las contraseñas no coinciden";
         }
-    } else {
+    }
+    else
+    {
         $error = "El nombre de usuario ya esta registrado";
     }
 }
 
-if (isset($_GET['logout'])) {
+if (isset($_GET['logout']))
+{
     // unset($_SESSION['user']);
     session_destroy();
     userRepository::quitarConectado($_SESSION['user']->getId());

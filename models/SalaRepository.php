@@ -1,16 +1,22 @@
 <?php
-class SalaRepository{
+class SalaRepository
+{
 
-    public static function addsala() {
-        $sala = [];
-        $db = Conectar::conecxion();
-        $result = $db -> query("SELECT * FROM sala WHERE mostrar = 1 AND sala = '.$id_sala.' ");
-        while ($datos = $result -> fetch_assoc()) {
-            $salas[] = new Salas($datos);
-        }
-        return $salas;
+    public static function setSala($user, $name)
+    {
+        $db = Conectar::conexion();
+        $resultado = $db->query("INSERT INTO salas (user, name) VALUES('" . $user . "', " . $name . ")");
     }
 
+    public static function getSala($user, $name)
+    {
+        $db = Conectar::conexion();
+        $resultado = $db->query("SELECT * FROM salas WHERE user='" . $user . "' and name='" . $name . "'");
+        if ($datos = $resultado->fetch_assoc())
+        {
+            return new Sala($datos);
+        }
+    }
 
 }
 
