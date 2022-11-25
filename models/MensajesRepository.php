@@ -6,7 +6,7 @@ class MensajesRepository {
     public static function getMensajes() {
         $mensajes = [];
         $db = Conectar::conexion();
-        $result = $db -> query("SELECT * FROM mensajes WHERE mostrar = 1 AND sala = 0");
+        $result = $db -> query("SELECT * FROM mensajes WHERE mostrar = 1 AND sala = 1");
         while ($datos = $result -> fetch_assoc()) {
             $mensajes[] = new Mensajes($datos);
         }

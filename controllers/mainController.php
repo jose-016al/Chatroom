@@ -39,15 +39,14 @@ if (isset($_POST['publicar'])) {
 
 
 
-$online = userRepository::getUserOnline();
 
-    // crea una nueva sala
+// crea una nueva sala
 if (isset($_GET['addSala'])) {
     require_once('controllers/salaController.php');
 }
 
 $salas = SalaRepository::getSalas();
-
+$online = userRepository::getUserOnline();
     // cargar la vista
 require_once("views/mainView.phtml");
 ?>
