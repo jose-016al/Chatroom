@@ -42,7 +42,7 @@ INSERT INTO users(user, password, rol, conectado) VALUES ("alberto", md5("1234")
 INSERT INTO users(user, password, rol, conectado) VALUES ("daulin", md5("1234"), 1, 0);
 
     -- salas----------
-INSERT INTO salas(user, name, descripcion) VALUES (1, "Principal", "descripcion");
+INSERT INTO salas(id, user, name, descripcion) VALUES (0, 1, "Principal", "descripcion");
 
     -- mensajes----------
 INSERT INTO mensajes(user, mensaje, fecha, mostrar, sala) VALUES (1, "Mensaje", NOW(), 1, 1);
