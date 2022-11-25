@@ -13,6 +13,14 @@ class SalaRepository {
         return $salas;
     }
 
+    public static function getSalaById($id_user) {
+        $db = Conectar::conexion();
+        $result = $db -> query("SELECT * FROM salas WHERE id = '".$id_user."'");
+        if ($datos = $result -> fetch_assoc()) {
+            return new User($datos);
+        }
+    }
+
         // creacion de una nueva sala
     public static function addSala($user, $name, $descripcion) {
         $db=Conectar::conexion();

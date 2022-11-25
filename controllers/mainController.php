@@ -45,8 +45,17 @@ if (isset($_GET['addSala'])) {
     require_once('controllers/salaController.php');
 }
 
+
+
+
 $salas = SalaRepository::getSalas();
 $online = userRepository::getUserOnline();
+$idsala= SalaRepository::getSalaById($_GET['sala'])
+
+if(isset('sala='.$Sala->getId().'')){
+    require_once("views/newSalaView.phtml");
+}
+// $mensajessala = SalaRepository::getMensajes();
     // cargar la vista
 require_once("views/mainView.phtml");
 ?>
