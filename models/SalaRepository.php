@@ -14,9 +14,9 @@ class SalaRepository {
     }
 
         // creacion de una nueva sala
-    public static function addSala($name, $descripcion, $id_sala) {
+    public static function addSala($user, $name, $descripcion) {
         $db=Conectar::conexion();
-        $result = $db -> query("INSERT INTO salas(name, descripcion, mensaje) VALUES ($name, $descripcion, $id_sala);");
+        $result = $db -> query("INSERT INTO salas(user, name, descripcion) VALUES ($user, $name, $descripcion);");
         return $result; 
     }
 

@@ -28,7 +28,7 @@ CREATE TABLE mensajes (
     imagen VARCHAR(50),
     fecha DATETIME,
     mostrar INT NOT NULL,
-    sala INT NOT NULL,
+    sala INT NOT NULL default 1,
     FOREIGN KEY (user) REFERENCES users(id),
     FOREIGN key (sala) references salas(id)
 );

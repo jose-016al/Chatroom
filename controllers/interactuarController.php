@@ -9,14 +9,4 @@ if (isset($_POST['publicar']))
         header("location:index.php");
     }
 }
-if (isset($_POST['crearSala']))
-{
-    if (!empty($_POST['mensaje']))
-    {
-        SalaRepository::setSala($_SESSION['user']->getId(), $_POST['mensaje']);
-        $sala = SalaRepository::getSala($_SESSION['user']->getId(), $_POST['mensaje']);
-        header('location: index.php?sala=' . $sala->getId());
-    }
-}
-
 ?>

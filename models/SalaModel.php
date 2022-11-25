@@ -3,15 +3,15 @@
 class Sala {
 
     private $id;
+    private $user;
     private $name;
     private $descripcion;
-    private $mensaje;
 
     public function __construct ($datos){
         $this -> id = $datos['id'];
         $this -> name = $datos['name'];
         $this -> descripcion = $datos['descripcion'];
-        $this -> mensaje = MensajesRepository::getMensajesSalas($datos['id']);
+        $this -> user = $datos['user'];
     }
 
     public function getId() {
@@ -26,8 +26,8 @@ class Sala {
         return $this -> descripcion;
     }
 
-    public function getMensaje() {
-        return $this -> mensaje;
+    public function getUser() {
+        return $this -> user;
     }
 
 } 
