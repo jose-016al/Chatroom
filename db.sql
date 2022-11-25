@@ -17,6 +17,7 @@ CREATE TABLE salas (
     id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
     user INT NOT NULL,
     name VARCHAR (50),
+    descripcion TEXT,
     FOREIGN KEY (user) REFERENCES users (id)
 );
 
@@ -28,16 +29,11 @@ CREATE TABLE mensajes (
     fecha DATETIME,
     mostrar INT NOT NULL,
     sala INT NOT NULL,
-    FOREIGN KEY (user) REFERENCES users(id)
+    FOREIGN KEY (user) REFERENCES users(id),
+    FOREIGN key (sala) references salas(id)
 );
-
-CREATE TABLE salas (
-    id INT AUTO_INCREMENT NOT NULL PRIMARY KEY,
-    name VARCHAR(50) NOT NULL,
-    descripcion TEXT,
-    mensaje INT NOT NULL,
-    FOREIGN KEY (mensaje) REFERENCES mensajes(id)
-);
+ALTER TABLE salas
+  ADD CONSTRAINT sala UNIQUE(user, name);
 
     -- usuarios----------
 INSERT INTO users(user, password, rol, conectado) VALUES ("jose_016al", md5("211099"), 0, 0);
@@ -45,10 +41,10 @@ INSERT INTO users(user, password, rol, conectado) VALUES ("inma", md5("1234"), 1
 INSERT INTO users(user, password, rol, conectado) VALUES ("alberto", md5("1234"), 1, 0);
 INSERT INTO users(user, password, rol, conectado) VALUES ("daulin", md5("1234"), 1, 0);
 
-    -- mensajes----------
-INSERT INTO mensajes(user, mensaje, fecha, mostrar, sala) VALUES (1, "Mensaje", NOW(), 1, 0);
-INSERT INTO mensajes(user, mensaje, fecha, mostrar, sala) VALUES (3, "Mensaje", NOW(), 1, 0);
-INSERT INTO mensajes(user, mensaje, fecha, mostrar, sala) VALUES (4, "Mensaje", NOW(), 1, 0);
-
     -- salas----------
-INSERT INTO salas(name, descripcion, mensaje) VALUES ("sala", "descripcion", 1);
+INSERT INTO salas(user, name, descripcion) VALUES (1, "Principal", "descripcion");
+
+    -- mensajes----------
+INSERT INTO mensajes(user, mensaje, fecha, mostrar, sala) VALUES (1, "Mensaje", NOW(), 1, 1);
+INSERT INTO mensajes(user, mensaje, fecha, mostrar, sala) VALUES (3, "Mensaje", NOW(), 1, 1);
+INSERT INTO mensajes(user, mensaje, fecha, mostrar, sala) VALUES (4, "Mensaje", NOW(), 1, 1);
