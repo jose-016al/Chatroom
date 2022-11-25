@@ -13,14 +13,13 @@ class MensajesRepository {
         return $mensajes;
     }
 
-   
 
         // añadimos un nuevo mensaje a la base de datos
-    public static function addMensaje($mensaje) {
+    public static function addMensaje($mensaje, $sala) {
         $db=Conectar::conexion();
         $user = $_SESSION['user']->getId();
-        $result = $db -> query("INSERT INTO mensajes(user, mensaje, fecha, mostrar, sala) VALUES ($user, '$mensaje', NOW(), 1, 0);");
-        return $result; 
+        $result = $db -> query("INSERT INTO mensajes(user, mensaje, fecha, mostrar, sala) VALUES ($user, '$mensaje', NOW(), 1, ".$sala.");");
+        return $result;
     }
 
 }
