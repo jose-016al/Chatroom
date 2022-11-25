@@ -88,7 +88,6 @@ class userRepository {
         $online = [];
         $tiempoDesconexion=5;//Se desconectara en 1 minuto
         $db = Conectar::conexion();
-        // $user = $_SESSION['user']->getId();
         $result = $db -> query("SELECT * FROM users WHERE conectado = 1");
         while ($datos = $result -> fetch_assoc()) {
             $user=new User($datos);
