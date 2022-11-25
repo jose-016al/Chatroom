@@ -29,7 +29,6 @@ if (isset($_GET['login']))
     die();
 }
 
-$mensajes = MensajesRepository::getMensajes();
 
     // añadimos un nuevo mensaje en la base de datos
 if (isset($_POST['publicar'])) {
@@ -46,18 +45,15 @@ if (isset($_GET['addSala'])) {
 }
 
 if(isset($_GET['sala'])){
-    $idsala= SalaRepository::getSalaById($_GET['sala'])
+    $idsala= SalaRepository::getSalaById($_GET['sala']);
+    $mensajes = SalaRepository::getMensajesSalas($_GET['sala']);
+}else{
+    $mensajes = SalaRepository::getMensajesSalas(1);
 }
 
 
 $salas = SalaRepository::getSalas();
 $online = userRepository::getUserOnline();
 
-
-if(isset('sala='.$Sala->getId().'')){
-    require_once("views/newSalaView.phtml");
-}
-// $mensajessala = SalaRepository::getMensajes();
-    // cargar la vista
 require_once("views/mainView.phtml");
 ?>
