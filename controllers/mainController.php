@@ -45,12 +45,14 @@ if (isset($_GET['addSala'])) {
     require_once('controllers/salaController.php');
 }
 
-
+if(isset($_GET['sala'])){
+    $idsala= SalaRepository::getSalaById($_GET['sala'])
+}
 
 
 $salas = SalaRepository::getSalas();
 $online = userRepository::getUserOnline();
-$idsala= SalaRepository::getSalaById($_GET['sala'])
+
 
 if(isset('sala='.$Sala->getId().'')){
     require_once("views/newSalaView.phtml");
