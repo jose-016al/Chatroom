@@ -19,7 +19,16 @@ class SalaRepository {
         $result = $db -> query("INSERT INTO salas(user, name, descripcion) VALUES ($user, $name, $descripcion);");
         return $result; 
     }
-
+    
+    public static function getMensajesSalas($id_sala) {
+        $mensajes = [];
+        $db = Conectar::conexion();
+        $result = $db -> query("SELECT * FROM mensajes WHERE mostrar = 1 AND sala = $id_sala");
+        while ($datos = $result -> fetch_assoc()) {
+            $mensajes[] = new Mensajes($datos);
+        }
+        return $mensajes;
+    }
 }
 
 ?>
