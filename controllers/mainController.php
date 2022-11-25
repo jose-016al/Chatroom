@@ -33,8 +33,8 @@ $mensajes = MensajesRepository::getMensajes();
 
     // añadimos un nuevo mensaje en la base de datos
 if (isset($_POST['publicar'])) {
-    MensajesRepository::addMensaje($_POST['mensaje']);
-    header("location:index.php");
+    require_once('controllers/interactuarController.php');
+    die();
 }
 
 
@@ -46,18 +46,12 @@ if (isset($_GET['addSala'])) {
 }
 
 if(isset($_GET['sala'])){
-    $idsala= SalaRepository::getSalaById($_GET['sala'])
+    $idsala= SalaRepository::getSalaById($_GET['sala']);
 }
 
 
 $salas = SalaRepository::getSalas();
 $online = userRepository::getUserOnline();
 
-
-if(isset('sala='.$Sala->getId().'')){
-    require_once("views/newSalaView.phtml");
-}
-// $mensajessala = SalaRepository::getMensajes();
-    // cargar la vista
 require_once("views/mainView.phtml");
 ?>

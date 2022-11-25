@@ -17,7 +17,7 @@ class SalaRepository {
         $db = Conectar::conexion();
         $result = $db -> query("SELECT * FROM salas WHERE id = '".$id_user."'");
         if ($datos = $result -> fetch_assoc()) {
-            return new User($datos);
+            return new Sala($datos);
         }
     }
 
