@@ -17,13 +17,16 @@
                 <ul class="nav">
                     <li><a href="index.php">Inicio</a></li>
                     <?php
-					if ($_SESSION['user'] -> getName()=="") {
+                    if ($_SESSION['user']->getName() == "")
+                    {
+                        echo '<li><a href="index.php?login">Login</a></li>';
+                    }
+                    else
+                    {
                         echo '<li><a href="index.php?addSala">Crear sala</a></li>';
-						echo '<li><a href="index.php?login">Login</a></li>';
-					} else {
-						echo '<li><a href="index.php?login&logout">Salir</a></li>';
-					}
-					?>
+                        echo '<li><a href="index.php?login&logout">Salir</a></li>';
+                    }
+                    ?>
                 </ul>
             </nav>
         </header>
@@ -32,27 +35,34 @@
                 <div class="col-12 col-md-9">
                     <div>
                         <?php
-						if ($_SESSION['user']->getName() != "") {
-                            if(isset($idsala))echo '<form action="index.php?sala=" method="post">';
-                            else echo '<form action="index.php" method="post">';
-							echo '<label class="form-label">¿Quieres publicar un nuevo mensaje?</label>
+                        if ($_SESSION['user']->getName() != "")
+                        {
+                            echo '<form action="index.php?sala=' . $idsala->getId() . '" method="post">
+                                <label class="form-label">¿Quieres publicar un nuevo mensaje?</label>
 								<input type="text" class="form-control" name="mensaje">
 								<input type="submit" class="btn btn-primary" name="publicar" value="Publicar">
 							</form>';
-						}
-						?>
+                        }
+                        ?>
                     </div>
                     <div class="row">
+                        <?php
+
+                        echo '<h3 class="mt-4 mb-2">' . $idsala->getName() . '</h3>';
+                        echo '<p>' . $idsala->getDescripcion() . '</p>';
+
+                        ?>
                         <h4 class="text-center">Mensajes</h4>
-                        <?php 
-						foreach ($mensajes as $Mensaje) {
-							echo '<p class="col-3 text-center">'.$Mensaje->getUser()->getName().'</p>';
-							echo '<div class="col-9 border-bottom">';
-								echo '<p>'.$Mensaje->getMensaje().'</p>';
-								echo '<p>'.$Mensaje->getFecha().'</p>';
-							echo '</div>';
-						}
-						?>
+                        <?php
+                        foreach ($mensajes as $Mensaje)
+                        {
+                            echo '<p class="col-3 text-center">' . $Mensaje->getUser()->getName() . '</p>';
+                            echo '<div class="col-9 border-bottom">';
+                            echo '<p>' . $Mensaje->getMensaje() . '</p>';
+                            echo '<p>' . $Mensaje->getFecha() . '</p>';
+                            echo '</div>';
+                        }
+                        ?>
                     </div>
                 </div>
 
@@ -61,8 +71,9 @@
                         <aside>
                             <h4>Salas</h4>
                             <?php
-                            foreach ($salas as $Sala) {
-                                echo '<a href="?sala='.$Sala->getId().'">'.$Sala->getName().'</a> <br>';
+                            foreach ($salas as $Sala)
+                            {
+                                echo '<a href="?sala=' . $Sala->getId() . '">' . $Sala->getName() . '</a> <br>';
                             }
                             ?>
                         </aside>
@@ -70,9 +81,12 @@
                             <h4>Usuarios conectados</h4>
                             <?php
 
-                            foreach ($online as $User) {
-
-                                echo "<p> - ".$User->getName()."</p>";
+                            foreach ($online as $User)
+                            {
+                                if ($User->getId() != $_SESSION['user']->getId())
+                                    echo "<a href='?md'> " . $User->getName() . "</a><br>";
+                                else
+                                    echo "<p>" . $User->getName() . "</p>";
                             }
                             ?>
                         </aside>

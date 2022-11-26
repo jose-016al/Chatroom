@@ -5,17 +5,20 @@ if (isset($_POST['publicar']))
 {
     if (!empty($_POST['mensaje']))
     {
-        if(isset($_GET['sala'])){
+        if (isset($_GET['sala']))
+        {
             MensajesRepository::addMensaje($_POST['mensaje'], $_GET['sala']);
-            echo $_GET['sala'];
-            // header('location: index.php?sala='.$_GET['sala']);
-        }else{
-            echo $_GET['sala'];
+            userRepository::ultimaConexion($_SESSION['user']->getId());
 
-            MensajesRepository::addMensaje($_POST['mensaje'], 1);
-            // header('location: index.php');
+            header('location: index.php?sala=' . $_GET['sala']);
         }
-        userRepository::ultimaConexion($_SESSION['user']->getId());
+        else
+        {
+            MensajesRepository::addMensaje($_POST['mensaje'], 1);
+            userRepository::ultimaConexion($_SESSION['user']->getId());
+
+            header('location: index.php');
+        }
     }
 }
 ?>
