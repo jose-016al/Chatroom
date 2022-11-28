@@ -121,10 +121,11 @@ class userRepository
         return $result;
     }
 
-    public static function updateSala($id_user, $sala)
+    public static function updateSala($sala)
     {
         $db = Conectar::conexion();
-        $result = $db->query("UPDATE users set sala = " . $sala . " where id='" . $id_user . "'");
+        $id_user = $_SESSION['user']->getId();
+        $result = $db->query("UPDATE users SET sala = $sala WHERE id = $id_user");
         return $result;
     }
 

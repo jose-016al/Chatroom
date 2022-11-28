@@ -84,7 +84,7 @@
                             foreach ($online as $User)
                             {
                                 if ($User->getId() != $_SESSION['user']->getId())
-                                    echo "<a href='?md'> " . $User->getName() . "</a><br>";
+                                    echo "<p> " . $User->getName() . "</p><br>";
                                 else
                                     echo "<p>" . $User->getName() . "</p>";
                             }

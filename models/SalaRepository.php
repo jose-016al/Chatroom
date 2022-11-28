@@ -28,11 +28,8 @@ class SalaRepository
     public static function getSalaByName($name)
     {
         $db = Conectar::conexion();
-        $result = $db->query("SELECT * FROM salas WHERE name = '" . $name . "'");
-        if ($datos = $result->fetch_assoc())
-        {
-            return new Sala($datos);
-        }
+        $result = $db->query("SELECT id FROM salas WHERE name = '" . $name . "'");
+        return intval($result->fetch_column());
     }
 
     // creacion de una nueva sala

@@ -47,6 +47,10 @@ INSERT INTO
     salas(name, descripcion)
 VALUES
     ("Principal", "descripcion");
+INSERT INTO
+    salas(name, descripcion)
+VALUES
+    ("sala secundaria", "descripcion");
 
 -- usuarios----------
 INSERT INTO

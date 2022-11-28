@@ -58,7 +58,7 @@ if (isset($_GET['sala']))
 else
     $sala = 1;
 
-userRepository::updateSala($_SESSION['user']->getId(), $sala);
+userRepository::updateSala($sala);
 $idsala = SalaRepository::getSalaById($sala);
 $mensajes = SalaRepository::getMensajesSalas($sala);
 $salas = SalaRepository::getSalas();
